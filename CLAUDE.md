@@ -7,3 +7,5 @@
 
 ## Test tool
 - use playwright-cli skill  for  test.
+- when finnish test not need to close session . Still open for next testing.
+- product of test have to place in directory .playwright-cli

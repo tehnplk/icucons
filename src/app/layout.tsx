@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ICU Consult Workspace",
-  description: "Consult-first workspace for ICU consultation and patient registry",
+  title: "ICU Consult — ระบบให้คำปรึกษาผู้ป่วยวิกฤต",
+  description: "ระบบให้คำปรึกษาและทะเบียนผู้ป่วย ICU",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="th"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
