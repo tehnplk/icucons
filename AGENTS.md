@@ -8,3 +8,6 @@
 ## Test tool
 - use playwright-cli skill  for  test.
 - product of test have to place in directory .playwright-cli
+
+## deploy to production
+- read guide document in /docs/deploy.md
