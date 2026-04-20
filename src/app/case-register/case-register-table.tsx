@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Clock3, Lock, ShieldCheck } from "lucide-react";
+import { Clock3, Lock, ShieldCheck, Stethoscope } from "lucide-react";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
@@ -32,6 +32,10 @@ type CaseRegisterTableProps = {
 
 export function CaseRegisterTable({ cases }: CaseRegisterTableProps) {
   const router = useRouter();
+
+  function handleConsult(caseItem: CaseRegisterListItem) {
+    router.push(`/case-register/${caseItem.id}`);
+  }
 
   async function handleCloseCase(caseItem: CaseRegisterListItem) {
     const result = await Swal.fire({
@@ -150,7 +154,15 @@ export function CaseRegisterTable({ cases }: CaseRegisterTableProps) {
                     )}
                   </td>
                   <td className="px-4 py-4">
-                    <div className="flex justify-end">
+                    <div className="flex justify-end gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleConsult(caseItem)}
+                        className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                      >
+                        <Stethoscope className="h-4 w-4" />
+                        Consult
+                      </button>
                       <button
                         type="button"
                         onClick={() => void handleCloseCase(caseItem)}

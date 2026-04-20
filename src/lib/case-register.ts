@@ -70,11 +70,11 @@ export async function fetchCaseRegisterList(): Promise<CaseRegisterListItem[]> {
       SELECT x.*
       FROM case_close x
       INNER JOIN (
-        SELECT patient_id, MAX(id) AS latest_id
+        SELECT case_register_id, MAX(id) AS latest_id
         FROM case_close
-        GROUP BY patient_id
+        GROUP BY case_register_id
       ) latest ON latest.latest_id = x.id
-    ) cc ON cc.patient_id = c.patient_id
+    ) cc ON cc.case_register_id = c.id
     ORDER BY c.id DESC
   `);
 

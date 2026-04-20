@@ -64,7 +64,7 @@ data  : เก็บข้อมูลการลงทะเบียนเค
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการลงทะเบียนเคส | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | record_date | วันที่ลงทะเบียนเคส | - |
 | 4 | record_time | เวลาลงทะเบียนเคส | - |
 | 5 | status | สถานะเคส | - |
@@ -89,7 +89,7 @@ data  : เก็บข้อมูลการปิดเคสของผู
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการปิดเคส | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | close_date | วันที่ปิดเคส | - |
 | 4 | close_time | เวลาปิดเคส | - |
 | 5 | close_type | ประเภทการปิดเคส | - |
@@ -97,7 +97,7 @@ data  : เก็บข้อมูลการปิดเคสของผู
 
 note :
 - type : child table
-- relate_master : patient.id -> case_close.patient_id
+- relate_master : case_register.id -> case_close.case_register_id
 
 ## case_file
 table : `case_file`  
@@ -106,7 +106,7 @@ data  : เก็บไฟล์เอกสารหรือรูปภาพ
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการไฟล์ | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | file_date | วันที่อัปโหลดไฟล์ | - |
 | 4 | file_time | เวลาอัปโหลดไฟล์ | - |
 | 5 | privder_id_do_file | รหัสผู้ให้บริการที่อัปโหลดไฟล์ | - |
@@ -121,7 +121,7 @@ data  : เก็บไฟล์เอกสารหรือรูปภาพ
 
 note :
 - type : child table
-- relate_master : patient.id -> case_file.patient_id, provider.id -> case_file.privder_id_do_file
+- relate_master : case_register.id -> case_file.case_register_id, provider.id -> case_file.privder_id_do_file
 
 ## case_lab
 table : `case_lab`  
@@ -130,7 +130,7 @@ data  : เก็บผลตรวจทางห้องปฏิบัติ
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการผลแล็บ | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | lab_date | วันที่ตรวจแล็บ | - |
 | 4 | lab_time | เวลาตรวจแล็บ | - |
 | 5 | name | ชื่อรายการตรวจ | - |
@@ -142,7 +142,7 @@ data  : เก็บผลตรวจทางห้องปฏิบัติ
 
 note :
 - type : child table
-- relate_master : patient.id -> case_lab.patient_id
+- relate_master : case_register.id -> case_lab.case_register_id
 
 ## case_medication
 table : `case_medication`  
@@ -151,7 +151,7 @@ data  : เก็บรายการยาที่ผู้ป่วยได
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการยา | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | start_date | วันที่เริ่มให้ยา | - |
 | 4 | start_time | เวลาเริ่มให้ยา | - |
 | 5 | name | ชื่อยา | - |
@@ -163,7 +163,7 @@ data  : เก็บรายการยาที่ผู้ป่วยได
 
 note :
 - type : child table
-- relate_master : patient.id -> case_medication.patient_id
+- relate_master : case_register.id -> case_medication.case_register_id
 
 ## case_message
 table : `case_message`  
@@ -172,7 +172,7 @@ data  : เก็บข้อความสนทนาในเคสของ
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสข้อความ | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | record_date | วันที่บันทึกข้อความ | - |
 | 4 | record_time | เวลาบันทึกข้อความ | - |
 | 5 | sender_id | รหัสผู้ส่งข้อความ | - |
@@ -183,7 +183,7 @@ data  : เก็บข้อความสนทนาในเคสของ
 
 note :
 - type : child table
-- relate_master : patient.id -> case_message.patient_id
+- relate_master : case_register.id -> case_message.case_register_id
 
 ## case_note
 table : `case_note`  
@@ -192,7 +192,7 @@ data  : เก็บบันทึกข้อความหรือโน้
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสบันทึกโน้ต | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | record_date | วันที่บันทึกโน้ต | - |
 | 4 | record_time | เวลาบันทึกโน้ต | - |
 | 5 | provider_id_do_note | รหัสผู้ให้บริการที่บันทึกโน้ต | - |
@@ -201,7 +201,7 @@ data  : เก็บบันทึกข้อความหรือโน้
 
 note :
 - type : child table
-- relate_master : patient.id -> case_note.patient_id, provider.id -> case_note.provider_id_do_note
+- relate_master : case_register.id -> case_note.case_register_id, provider.id -> case_note.provider_id_do_note
 
 ## case_team
 table : `case_team`  
@@ -210,7 +210,7 @@ data  : เก็บข้อมูลทีมผู้ให้บริกา
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการทีมดูแล | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | provider_id | รหัสผู้ให้บริการ | - |
 | 4 | role | บทบาทของผู้ให้บริการในทีมดูแล | - |
 | 5 | assign_date | วันที่มอบหมายงาน | - |
@@ -218,7 +218,7 @@ data  : เก็บข้อมูลทีมผู้ให้บริกา
 
 note :
 - type : child table
-- relate_master : patient.id -> case_team.patient_id, provider.id -> case_team.provider_id
+- relate_master : case_register.id -> case_team.case_register_id, provider.id -> case_team.provider_id
 
 ## case_vital
 table : `case_vital`  
@@ -227,7 +227,7 @@ data  : เก็บข้อมูลสัญญาณชีพของผู
 | # | column | data_define | choice |
 |---|---|---|---|
 | 1 | id | รหัสรายการสัญญาณชีพ | - |
-| 2 | patient_id | รหัสผู้ป่วย | - |
+| 2 | case_register_id | รหัสรายการลงทะเบียนเคส | - |
 | 3 | record_date | วันที่บันทึกสัญญาณชีพ | - |
 | 4 | record_time | เวลาบันทึกสัญญาณชีพ | - |
 | 5 | bp | ความดันโลหิต | - |
@@ -239,7 +239,7 @@ data  : เก็บข้อมูลสัญญาณชีพของผู
 
 note :
 - type : child table
-- relate_master : patient.id -> case_vital.patient_id
+- relate_master : case_register.id -> case_vital.case_register_id
 
 ## hospital
 table : `hospital`  

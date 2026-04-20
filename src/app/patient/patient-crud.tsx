@@ -387,7 +387,11 @@ export function PatientCrud({
         confirmButtonColor: "#0f172a",
       });
 
-      router.push("/case-register");
+      if (payload.caseRegisterId) {
+        router.push(`/case-register/${payload.caseRegisterId}`);
+      } else {
+        router.push("/case-register");
+      }
       router.refresh();
     } catch (sendError) {
       const message =
